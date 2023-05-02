@@ -3,7 +3,7 @@ import express, { Express, json, urlencoded } from "express";
 class Server {
   port: number;
   app: Express;
-  constructor(port) {
+  constructor(port: number) {
     this.port = port;
     this.app = express();
     this.setupMiddleware();
@@ -21,7 +21,7 @@ class Server {
     });
   }
 
-  start(cb: () => {}) {
+  start(cb: () => void) {
     this.app.listen(this.port, () => {
       console.log(`Server is running on port ${this.port}`);
       cb();
