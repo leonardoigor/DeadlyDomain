@@ -10,12 +10,20 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
       let socket = io();
+      let id = socket.id;
+      let name = "Name " + Math.random() * 500;
+      let lat = 0;
+      let long = 0;
       socket.on("connect", () => {
-        let id = socket.id;
-        let name = "Name " + Math.random() * 500;
-        let lat = 0;
-        let long = 0;
+        id = socket.id;
+        name = "Name " + Math.random() * 500;
+        lat = 0;
+        long = 0;
         socket.emit("setup_player", { id, name, lat, long });
+      });
+
+      socket.on("joined_room", (d) => {
+        console.log("joined_room", d);
       });
     </script>
   </body>

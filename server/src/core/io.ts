@@ -1,5 +1,4 @@
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
-import User from "../app/user";
 import Queues from "./queues";
 import { Server as ServerIo } from "socket.io";
 
@@ -13,13 +12,12 @@ export default class IO {
   ) {
     io.on("connection", (socket) => {
       this.queue.bind(socket);
-      let user: User | undefined;
-      console.log(user);
 
       console.log("User connected " + socket.id);
 
       socket.on("disconnect", () => {
         console.log("Disconneted " + socket.id);
+        this.queue.lobbs.remove_player_from_lobby(socket.id);
       });
     });
   }

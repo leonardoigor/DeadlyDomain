@@ -13,6 +13,9 @@ const io = new ServerIo(sv);
 console.log("Static files " + resolve(__dirname, "public"));
 
 server.app.use("/static", express.static(resolve(__dirname, "public")));
+const _io = new IO();
 sv.listen(server.port, () => {
-  new IO().bind(io);
+  console.log("Server running on " + server.port);
+
+  _io.bind(io);
 });
